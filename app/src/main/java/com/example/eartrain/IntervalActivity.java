@@ -58,6 +58,7 @@ public class IntervalActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 // Repeat the sound
+
             }
         });
 

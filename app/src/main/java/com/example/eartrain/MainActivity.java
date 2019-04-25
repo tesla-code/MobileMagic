@@ -4,14 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         // TEMPORARY
         startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
+        tutorial();
     }
 
     @Override
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
 
         if (id == R.id.action_settings) {
-            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(i);
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -96,5 +95,23 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
             }
         });
+    }
+
+    /**
+     *
+     * Checks whether a tutorial should be played
+     */
+    private void tutorial()
+    {
+        StorageHandler storageHandler = new StorageHandler(this);
+
+        //if this is the first time the app is opened
+        if (storageHandler.getFirstTime())
+        {
+            //set the first time flag to false
+            storageHandler.setFirstTime(false);
+            //launch tutorial
+            startActivity(new Intent(MainActivity.this, TutorialActivity.class));
+        }
     }
 }

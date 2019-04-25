@@ -11,6 +11,7 @@ public class StorageHandler
 {
     SharedPreferences sharedPreferences;
     private static final String FILENAME = "Preferences";
+    private static final String FIRSTTIME = "FirstTime";
     private static String SENSITIVITY = "Sensitivity";
 
     /**
@@ -26,7 +27,7 @@ public class StorageHandler
      *
      * @return integer note sensitivity
      */
-    public int getSenitivity()
+    public int getSensitivity()
     {
         return sharedPreferences.getInt(SENSITIVITY, 0);
     }
@@ -39,6 +40,26 @@ public class StorageHandler
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(SENSITIVITY,s);
+        editor.commit();
+    }
+
+    /**
+     *
+     * @return boolean firstTime
+     */
+    public boolean getFirstTime()
+    {
+        return sharedPreferences.getBoolean(FIRSTTIME, true);
+    }
+
+    /**
+     *
+     * @param f stored to SharedPreferences
+     */
+    public void setFirstTime(boolean f)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(FIRSTTIME,f);
         editor.commit();
     }
 }

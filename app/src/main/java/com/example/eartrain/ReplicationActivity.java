@@ -107,8 +107,6 @@ public class ReplicationActivity extends AppCompatActivity
             // Perform pitch calculations
             double midiNumber = 69 + 12 * Math.log(pitch / 440.0) / Math.log(2);
 
-            Log.d("AYYY", "" + midiNumber);
-
             // Check if user has held a pitch for more than the required amount of time
             if (m_noteTime > 1.0 /* TODO: Magic number */)
             {
@@ -121,7 +119,6 @@ public class ReplicationActivity extends AppCompatActivity
         }
         else
         {
-            Log.d("AYYY", "No pitch detected.");
             // No pitch detected
             m_noteTime = 0.0;
         }
