@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".IntervalTrainingActivity"
+    tools:showIn="@layout/activity_interval_training">
+
+    <TextView
+        android:id="@+id/txt_success_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="32sp"
+        android:padding="16dp"
+        android:text="0/10"/>
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="PLAY SOUND"
+        android:textSize="32sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_play"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_unison"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="unison"/>
+
+        <Button
+            android:id="@+id/btn_minor_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="minor second" />
+
+        <Button
+            android:id="@+id/btn_major_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="major second" />
+
+    </LinearLayout>
+
+</RelativeLayout>

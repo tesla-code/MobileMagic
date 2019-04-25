@@ -1,5 +1,6 @@
 package com.example.eartrain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // TEMPORARY
+        startActivity(new Intent(getApplicationContext(), IntervalTrainingActivity.class));
     }
 
     @Override
