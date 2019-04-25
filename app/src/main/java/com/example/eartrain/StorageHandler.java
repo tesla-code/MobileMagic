@@ -26,7 +26,7 @@ public class StorageHandler
      *
      * @return integer note sensitivity
      */
-    public int getSenitivity()
+    public int getSensitivity()
     {
         return sharedPreferences.getInt(SENSITIVITY, 0);
     }
