@@ -60,24 +60,29 @@ public class MainActivity extends AppCompatActivity
         chordButton = findViewById(R.id.btn_chord);
         chordButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChordActivity.class));
+
             }
         });
 
         intervalButton = findViewById(R.id.btn_interval);
         intervalButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), IntervalActivity.class));
             }
         });
 
         replicationButton = findViewById(R.id.btn_replication);
         replicationButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
             }
         });
 
         statButton = findViewById(R.id.btn_stats);
         statButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
             }
         });
     }
