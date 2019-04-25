@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         setUp();
-
-        // TEMPORARY
-        startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
         tutorial();
     }
 
