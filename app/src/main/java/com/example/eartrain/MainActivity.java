@@ -8,10 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
 {
     StorageHandler storageHandler;
+    Button chordButton, intervalButton, statButton, replicationButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -21,14 +24,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setUp();
     }
 
     @Override
@@ -54,5 +50,33 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setUp()
+    {
+        //Registering buttons
+        chordButton = findViewById(R.id.btn_chord);
+        chordButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
+
+        intervalButton = findViewById(R.id.btn_interval);
+        intervalButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
+
+        replicationButton = findViewById(R.id.btn_replication);
+        replicationButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
+        
+        statButton = findViewById(R.id.btn_stats);
+        statButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
     }
 }

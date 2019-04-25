@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Ear Train</string>
     <string name="action_settings">Settings</string>
+    <string name="button_chord">Chord</string>
+    <string name="button_interval">Interval</string>
+    <string name="button_replication">Replication</string>
+    <string name="button_stats">Statistics</string>
 </resources>
