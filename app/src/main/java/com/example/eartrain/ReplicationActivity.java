@@ -23,6 +23,7 @@ public class ReplicationActivity extends AppCompatActivity
     int m_targetNote;           // The note the user should hit
     double m_noteTime;          // How long the user has held a note
     double m_lastTime;          // The last measured time
+    int m_correctAnswers;       // The amount of correct notes sung.
 
     // UI elements
     Button m_btnPlay;
@@ -52,6 +53,7 @@ public class ReplicationActivity extends AppCompatActivity
     {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         {
+            Log.d("AYYY", "Permission granted");
             // Permission granted
             AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
             PitchDetectionHandler pdh = new PitchDetectionHandler()
@@ -105,16 +107,79 @@ public class ReplicationActivity extends AppCompatActivity
             // Perform pitch calculations
             double midiNumber = 69 + 12 * Math.log(pitch / 440.0) / Math.log(2);
 
+            Log.d("AYYY", "" + midiNumber);
+
             // Check if user has held a pitch for more than the required amount of time
             if (m_noteTime > 1.0 /* TODO: Magic number */)
             {
                 // Check if the note is correct
+                if (midiNumber == m_targetNote)
+                {
+                    m_correctAnswers++;
+                }
             }
         }
         else
         {
+            Log.d("AYYY", "No pitch detected.");
             // No pitch detected
             m_noteTime = 0.0;
         }
+    }
+
+    /**
+     * Converts a midi number to standard note names.
+     * @param n The midi number
+     * @return
+     */
+    private String midiNumberToNoteName(final double n)
+    {
+        String note;
+        int roundedN = (int)Math.round(n);
+        switch (roundedN % 12)
+        {
+            case 0:
+                note = "C";
+                break;
+            case 1:
+                note = "C#"; // TODO: #/b should be preference / key based
+                break;
+            case 2:
+                note = "D";
+                break;
+            case 3:
+                note = "D#";
+                break;
+            case 4:
+                note = "E";
+                break;
+            case 5:
+                note = "F";
+                break;
+            case 6:
+                note = "F#";
+                break;
+            case 7:
+                note = "G";
+                break;
+            case 8:
+                note = "G#";
+                break;
+            case 9:
+                note = "A";
+                break;
+            case 10:
+                note = "A#";
+                break;
+            case 11:
+                note = "B";
+                break;
+            default:
+                note = "THIS NOTE DOES NOT EXIST";
+                break;
+        }
+        note += ((int)Math.round(n) / 12 - 1);
+
+        return note;
     }
 }
