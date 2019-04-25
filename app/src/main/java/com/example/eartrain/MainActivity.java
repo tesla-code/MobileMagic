@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
             }
         });
-        
+
         statButton = findViewById(R.id.btn_stats);
         statButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
