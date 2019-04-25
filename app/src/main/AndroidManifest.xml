@@ -31,14 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name=".IntervalTrainingActivity"
-            android:label="@string/title_activity_interval_training"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-=======
         <activity android:name=".ChordActivity"></activity>
->>>>>>> 7d4034a3cf35a47965e324d080cd7297488ccff6
     </application>
 
 </manifest>
