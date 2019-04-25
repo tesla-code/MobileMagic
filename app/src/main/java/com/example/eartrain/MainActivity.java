@@ -1,5 +1,7 @@
 package com.example.eartrain;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +12,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import be.tarsos.dsp.AudioDispatcher;
+import be.tarsos.dsp.AudioEvent;
+import be.tarsos.dsp.io.android.AudioDispatcherFactory;
+import be.tarsos.dsp.pitch.PitchDetectionHandler;
+import be.tarsos.dsp.pitch.PitchDetectionResult;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -28,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         setUp();
 
         // TEMPORARY
-        startActivity(new Intent(getApplicationContext(), IntervalActivity.class));
+        startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
     }
 
     @Override

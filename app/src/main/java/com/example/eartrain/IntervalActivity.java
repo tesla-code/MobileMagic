@@ -12,19 +12,20 @@ import java.util.Random;
 
 enum Interval
 {
-    UNISON,
-    MINOR_SECOND,
-    MAJOR_SECOND,
-    MINOR_THIRD,
-    MAJOR_THIRD,
-    PERFECT_FOURTH,
-    AUGMENTED_FOURTH,
-    PERFECT_FIFTH,
-    MINOR_SIXTH,
-    MAJOR_SIXTH,
-    MINOR_SEVENTH,
-    MAJOR_SEVENTH,
-    OCTAVE
+    // Interval name    Half-steps
+    UNISON,             // 0
+    MINOR_SECOND,       // 1
+    MAJOR_SECOND,       // 2
+    MINOR_THIRD,        // 3
+    MAJOR_THIRD,        // 4
+    PERFECT_FOURTH,     // 5
+    AUGMENTED_FOURTH,   // 6
+    PERFECT_FIFTH,      // 7
+    MINOR_SIXTH,        // 8
+    MAJOR_SIXTH,        // 9
+    MINOR_SEVENTH,      // 10
+    MAJOR_SEVENTH,      // 11
+    OCTAVE              // 12
 }
 
 public class IntervalActivity extends AppCompatActivity
@@ -45,7 +46,7 @@ public class IntervalActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interval_training);
+        setContentView(R.layout.activity_interval);
 
         // Fetch UI elements
         m_txtSuccessCounter = findViewById(R.id.txt_success_counter);
