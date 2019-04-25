@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         setUp();
+        tutorial();
     }
 
     @Override
@@ -46,8 +47,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
 
         if (id == R.id.action_settings) {
-            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(i);
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -84,5 +84,23 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
             }
         });
+    }
+
+    /**
+     *
+     * Checks whether a tutorial should be played
+     */
+    private void tutorial()
+    {
+        StorageHandler storageHandler = new StorageHandler(this);
+
+        //if this is the first time the app is opened
+        if (storageHandler.getFirstTime())
+        {
+            //set the first time flag to false
+            storageHandler.setFirstTime(false);
+            //launch tutorial
+            startActivity(new Intent(MainActivity.this, TutorialActivity.class));
+        }
     }
 }
