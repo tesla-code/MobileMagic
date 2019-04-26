@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -82,21 +83,27 @@ public class IntervalActivity extends AppCompatActivity
          *  3. If harmonic, play note1 and note2 simultaneously
          */
 
-        SoundManager sm = new SoundManager();
+        final SoundManager sm = new SoundManager();
         sm.play(this, note1);
-        sm.play(this, note2); // TODO: Delay
-
-
         m_btnPlay.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 // Repeat the sound
-                new SoundManager().play(getApplicationContext(), note1);
-                new SoundManager().play(getApplicationContext(), note2);
+                sm.play(getApplicationContext(), note1);
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        sm.play(getApplicationContext(), note2);
+                    }
+                }, 1000 );
+
             }
         });
+
+        m_btnPlay.callOnClick();
 
         setUpIntervalButton(Interval.UNISON, m_btnUnison);
         setUpIntervalButton(Interval.MINOR_SECOND, m_btnMinorSecond);

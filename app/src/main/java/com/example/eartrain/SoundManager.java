@@ -37,29 +37,12 @@ public class SoundManager
      * @param i_context the context that the method is called from
      * @param
      */
-    public void play(Context i_context, int i_MDINoteNumber) // throws NullPointerException
+    public void play(Context i_context, int i_midiNumber) // throws NullPointerException
     {
-
+        m_mediaPlayer = MediaPlayer.create(i_context, midiToResId(i_midiNumber));
         m_mediaPlayer.start();
-        Log.i("Sound::Play", "Playing sound with MDINote " + i_MDINoteNumber);
-        //m_mediaPlayer.reset();
     }
 
-
-    /**
-     * Takes an midi note number and returns the path to the file.
-     * @param mdi
-     * @return
-     */
-    public int play(int mdi)
-    {
-        switch (mdi)
-        {
-            case 21:
-                return R.raw.a0vh;
-        }
-        return R.raw.a0vh;
-    }
 
     private int midiToResId(int i_midiNumber)
     {
