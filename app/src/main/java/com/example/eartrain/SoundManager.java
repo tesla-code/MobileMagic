@@ -43,7 +43,6 @@ public class SoundManager
         m_mediaPlayer.start();
     }
 
-
     private int midiToResId(int i_midiNumber)
     {
         switch(i_midiNumber)
