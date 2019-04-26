@@ -73,14 +73,18 @@ public class IntervalActivity extends AppCompatActivity
 
         // Randomise interval and root note, and play sound
         m_correctInterval = Interval.values()[new Random().nextInt(3)];
-        int note1 = new Random().nextInt(12) + 40 ; // TODO: Let user decide vocal range
-        int note2 = note1 + m_correctInterval.size();
+        final int note1 = new Random().nextInt(12) + 40 ; // TODO: Let user decide vocal range
+        final int note2 = note1 + m_correctInterval.size();
 
         /* TODO: Play sounds
          *  1. If ascending, play note1, then note2 with a delay
          *  2. If descending, play note2, then note1 with a delay
          *  3. If harmonix, play note1 and note2 simultaneously
          */
+
+        SoundManager sm = new SoundManager();
+        sm.play(this, note1);
+        sm.play(this, note2); // TODO: Delay
 
 
         m_btnPlay.setOnClickListener(new View.OnClickListener()
@@ -89,7 +93,8 @@ public class IntervalActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 // Repeat the sound
-                new SoundManager().play(getApplicationContext());
+                new SoundManager().play(getApplicationContext(), note1);
+                new SoundManager().play(getApplicationContext(), note2);
             }
         });
 
