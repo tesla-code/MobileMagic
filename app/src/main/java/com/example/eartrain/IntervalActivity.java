@@ -17,6 +17,27 @@ import java.util.Random;
 
 public class IntervalActivity extends AppCompatActivity
 {
+    private final String TAG = "IntervalActivity";
+
+    public enum Mode
+    {
+        ASCENDING(0),
+        DESCENDING(1),
+        HARMONIC(2);
+
+        private int m_value;
+
+        Mode(int value)
+        {
+            m_value = value;
+        }
+
+        int getValue()
+        {
+            return m_value;
+        }
+    }
+
     Interval m_correctInterval;     // The interval that was played to the user
     boolean m_firstTry;             // Did the user get the correct interval on their first try?
     int m_currentRound;             // The current round
@@ -24,6 +45,8 @@ public class IntervalActivity extends AppCompatActivity
     int m_score;                    // The current score
     double m_lastNanoTime;          // The last elapsed time in nanoseconds
     double m_totalTime;             // The time spent in total since training started
+    Mode m_mode;                    // The exercise mode
+    SoundManager m_soundManager;    // Plays sounds
 
     // UI elements
     TextView m_txtSuccessCounter;   // Displays amount of correct answers
@@ -59,6 +82,10 @@ public class IntervalActivity extends AppCompatActivity
         m_correctAnswers = 0;
         m_totalTime = 0;
 
+        m_mode = Mode.values()[getIntent().getIntExtra("MODE", 0)];
+
+        m_soundManager = new SoundManager();
+
         startNextRound();
     }
 
@@ -77,29 +104,43 @@ public class IntervalActivity extends AppCompatActivity
         final int note1 = new Random().nextInt(12) + 40 ; // TODO: Let user decide vocal range
         final int note2 = note1 + m_correctInterval.size();
 
-        /* TODO: Play sounds
-         *  1. If ascending, play note1, then note2 with a delay
-         *  2. If descending, play note2, then note1 with a delay
-         *  3. If harmonic, play note1 and note2 simultaneously
-         */
-
-        final SoundManager sm = new SoundManager();
-        sm.play(this, note1);
         m_btnPlay.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 // Repeat the sound
-                sm.play(getApplicationContext(), note1);
-                new Handler().postDelayed(new Runnable() {
+                switch (m_mode)
+                {
+                    case ASCENDING:
+                        new SoundManager().play(getApplicationContext(), note2);
+                        new Handler().postDelayed(new Runnable()
+                        {
 
-                    @Override
-                    public void run() {
-                        sm.play(getApplicationContext(), note2);
-                    }
-                }, 1000 );
+                            @Override
+                            public void run()
+                            {
+                                new SoundManager().play(getApplicationContext(), note2);
+                            }
+                        }, 1000);
+                        break;
+                    case DESCENDING:
+                        new SoundManager().play(getApplicationContext(), note2);
+                        new Handler().postDelayed(new Runnable()
+                        {
 
+                            @Override
+                            public void run()
+                            {
+                                new SoundManager().play(getApplicationContext(), note1);
+                            }
+                        }, 1000);
+                        break;
+                    case HARMONIC:
+                        new SoundManager().play(getApplicationContext(), note1);
+                        new SoundManager().play(getApplicationContext(), note2);
+                        break;
+                }
             }
         });
 
