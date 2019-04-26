@@ -1,5 +1,7 @@
 package com.example.eartrain;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
+
+import be.tarsos.dsp.AudioDispatcher;
+import be.tarsos.dsp.AudioEvent;
+import be.tarsos.dsp.io.android.AudioDispatcherFactory;
+import be.tarsos.dsp.pitch.PitchDetectionHandler;
+import be.tarsos.dsp.pitch.PitchDetectionResult;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         soundManager.play(this, 21);
 
         setUp();
+        tutorial();
     }
 
     @Override
@@ -49,8 +58,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
 
         if (id == R.id.action_settings) {
-            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(i);
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -87,5 +95,23 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
             }
         });
+    }
+
+    /**
+     *
+     * Checks whether a tutorial should be played
+     */
+    private void tutorial()
+    {
+        StorageHandler storageHandler = new StorageHandler(this);
+
+        //if this is the first time the app is opened
+        if (storageHandler.getFirstTime())
+        {
+            //set the first time flag to false
+            storageHandler.setFirstTime(false);
+            //launch tutorial
+            startActivity(new Intent(MainActivity.this, TutorialActivity.class));
+        }
     }
 }
