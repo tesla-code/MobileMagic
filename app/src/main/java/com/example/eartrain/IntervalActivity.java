@@ -85,7 +85,6 @@ public class IntervalActivity extends AppCompatActivity
 
         m_btnPlay.setOnClickListener(new View.OnClickListener()
         {
-            Media.cr
             @Override
             public void onClick(View v)
             {
