@@ -79,4 +79,10 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="Repetition_button_text">Interval singing</string>
+    <string name="IntervalTraining_button_text">Interval Training</string>
+    <string name="ChordTraining_button_text">Chord Training</string>
+    <string name="TheoryButton_text">Theory</string>
+    <string name="Theory_button_text">Theory</string>
+    <string name="statistics_button_text">Statistics</string>
 </resources>

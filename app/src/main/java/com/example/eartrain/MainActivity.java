@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SoundManager soundManager = new SoundManager();
+        soundManager.play(this, 21);
+
         setUp();
     }
 
