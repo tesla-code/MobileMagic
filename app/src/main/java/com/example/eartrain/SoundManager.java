@@ -33,7 +33,7 @@ public class SoundManager
 
     public void play(Context i_context)
     {
-        m_mediaPlayer = MediaPlayer.create(i_context, R.raw.a0vh);
+        m_mediaPlayer = MediaPlayer.create(i_context, R.raw.a1);
         m_mediaPlayer.start();
         Log.i("Sound", "Playing sound");
     }
