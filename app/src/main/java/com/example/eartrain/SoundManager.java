@@ -3,6 +3,7 @@ package com.example.eartrain;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 
 /**
@@ -41,6 +42,22 @@ public class SoundManager
     {
         m_mediaPlayer = MediaPlayer.create(i_context, midiToResId(i_midiNumber));
         m_mediaPlayer.start();
+
+
+        new Handler().postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                m_mediaPlayer.reset();
+            }
+        }, 1000);
+    }
+
+    void reset()
+    {
+        m_mediaPlayer.reset();
     }
 
 
