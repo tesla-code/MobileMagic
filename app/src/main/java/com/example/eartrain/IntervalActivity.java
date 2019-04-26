@@ -3,6 +3,7 @@ package com.example.eartrain;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,11 +25,21 @@ public class IntervalActivity extends AppCompatActivity
     double m_totalTime;             // The time spent in total since training started
 
     // UI elements
-    TextView m_txtSuccessCounter;   // Counts correct answers
+    TextView m_txtSuccessCounter;   // Displays amount of correct answers
     Button m_btnPlay;               // Replays the interval
     Button m_btnUnison;             // |
     Button m_btnMinorSecond;        // | Player answer buttons
     Button m_btnMajorSecond;        // |
+    // Button m_btnMinorThird;
+    // Button m_btnMajorThird;
+    // Button m_btnPerfectFourth;
+    // Button m_btnAugmentedFourth;
+    // Button m_btnPerfectFifth;
+    // Button m_btnMinorSixth;
+    // Button m_btnMajorSixth;
+    // Button m_btnMinorSeventh;
+    // Button m_btnMajorSeventh;
+    // Button m_btnOctave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,12 +68,24 @@ public class IntervalActivity extends AppCompatActivity
     {
         m_txtSuccessCounter.setText(m_correctAnswers + "/" + m_currentRound);
         m_currentRound++;
-        m_correctInterval = Interval.values()[new Random().nextInt(3)];
 
         m_lastNanoTime = System.nanoTime();
 
+        // Randomise interval and root note, and play sound
+        m_correctInterval = Interval.values()[new Random().nextInt(3)];
+        int note1 = new Random().nextInt(12) + 40 ; // TODO: Let user decide vocal range
+        int note2 = note1 + m_correctInterval.size();
+
+        /* TODO: Play sounds
+         *  1. If ascending, play note1, then note2 with a delay
+         *  2. If descending, play note2, then note1 with a delay
+         *  3. If harmonix, play note1 and note2 simultaneously
+         */
+
+
         m_btnPlay.setOnClickListener(new View.OnClickListener()
         {
+            Media.cr
             @Override
             public void onClick(View v)
             {

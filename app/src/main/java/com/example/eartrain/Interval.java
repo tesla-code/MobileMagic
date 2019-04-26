@@ -17,6 +17,44 @@ public enum Interval
     MAJOR_SEVENTH,      // 11
     OCTAVE;             // 12
 
+    /**
+     * Returns the size of the interval in half-steps
+     * @return The size of the interval in half-steps
+     */
+    public int size()
+    {
+        switch (this)
+        {
+            case UNISON:
+                return 0;
+            case MINOR_SECOND:
+                return 1;
+            case MAJOR_SECOND:
+                return 2;
+            case MINOR_THIRD:
+                return 3;
+            case MAJOR_THIRD:
+                return 4;
+            case PERFECT_FOURTH:
+                return 5;
+            case AUGMENTED_FOURTH:
+                return 6;
+            case PERFECT_FIFTH:
+                return 7;
+            case MINOR_SIXTH:
+                return 8;
+            case MAJOR_SIXTH:
+                return 9;
+            case MINOR_SEVENTH:
+                return 10;
+            case MAJOR_SEVENTH:
+                return 11;
+            case OCTAVE:
+                return 12;
+            default:
+                return -1;
+        }
+    }
 
     @Override
     public String toString()
