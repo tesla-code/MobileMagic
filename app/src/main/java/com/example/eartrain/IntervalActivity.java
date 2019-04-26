@@ -79,7 +79,7 @@ public class IntervalActivity extends AppCompatActivity
         /* TODO: Play sounds
          *  1. If ascending, play note1, then note2 with a delay
          *  2. If descending, play note2, then note1 with a delay
-         *  3. If harmonix, play note1 and note2 simultaneously
+         *  3. If harmonic, play note1 and note2 simultaneously
          */
 
         SoundManager sm = new SoundManager();
