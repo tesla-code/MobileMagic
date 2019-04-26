@@ -1,9 +1,11 @@
 package com.example.eartrain;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +18,10 @@ public class IntervalActivity extends AppCompatActivity
     Interval m_correctInterval;     // The interval that was played to the user
     boolean m_firstTry;             // Did the user get the correct interval on their first try?
     int m_currentRound;             // The current round
-    int m_correctAnswers;           // The amount of correct asnwers
+    int m_correctAnswers;           // The amount of correct answers
+    int m_score;                    // The current score
+    double m_lastNanoTime;          // The last elapsed time in nanoseconds
+    double m_totalTime;             // The time spent in total since training started
 
     // UI elements
     TextView m_txtSuccessCounter;   // Counts correct answers
@@ -40,6 +45,8 @@ public class IntervalActivity extends AppCompatActivity
 
         m_currentRound = 0;
         m_correctAnswers = 0;
+        m_totalTime = 0;
+
         startNextRound();
     }
 
@@ -51,6 +58,8 @@ public class IntervalActivity extends AppCompatActivity
         m_txtSuccessCounter.setText(m_correctAnswers + "/" + m_currentRound);
         m_currentRound++;
         m_correctInterval = Interval.values()[new Random().nextInt(3)];
+
+        m_lastNanoTime = System.nanoTime();
 
         m_btnPlay.setOnClickListener(new View.OnClickListener()
         {
@@ -98,19 +107,27 @@ public class IntervalActivity extends AppCompatActivity
         {
             button.setBackgroundColor(Color.GREEN);
 
+            double seconds = (System.nanoTime() - m_lastNanoTime) / 1000000000.0;
+            Log.d("SECONDS", "" + seconds);
+            m_totalTime += seconds;
+
             if (m_firstTry)
             {
                 // The user was successful
                 m_correctAnswers++;
-            }
-            else
-            {
-                // The user was not successful
+                m_score += 100; // TODO: Don't hardcode the score calculation constants
+                m_score += (10.0 - seconds) * 50;
             }
 
             if (m_currentRound == 10 /* TODO: Don't magic number */)
             {
                 // Go to results screen.
+                Intent intent = new Intent(IntervalActivity.this, TrainingResultActivity.class);
+                intent.putExtra("SCORE", m_score);
+                intent.putExtra("TIME", m_totalTime);
+                intent.putExtra("CORRECT", m_correctAnswers);
+                finish();
+                startActivity(intent);
             }
             else
             {
