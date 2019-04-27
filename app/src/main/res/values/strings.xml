@@ -85,4 +85,8 @@
     <string name="TheoryButton_text">Theory</string>
     <string name="Theory_button_text">Theory</string>
     <string name="statistics_button_text">Statistics</string>
+    <string name="achievement_1_chad">Chad</string>
+    <string name="achievement_2_diamond">Shine Birght</string>
+    <string name="Achievement_headline">Achievements</string>
+    <string name="achievement_3_trophy">Trophy</string>
 </resources>
