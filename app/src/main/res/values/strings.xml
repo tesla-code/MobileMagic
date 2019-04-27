@@ -85,4 +85,15 @@
     <string name="TheoryButton_text">Theory</string>
     <string name="Theory_button_text">Theory</string>
     <string name="statistics_button_text">Statistics</string>
+    <string name="intervals">Intervals</string>
+    <string name="interval_theory">An interval is the distance between two notes. There are two types of intervals: harmonic and melodic. Harmonic intervals occur when two notes are played at the same time, whereas melodic intervals are spaced out. Melodic intervals can be either ascending, with the second note being higher than the first, or descending, where the second note is lower.</string>
+    <string name="naming_intervals">Naming intervals</string>
+    <string name="naming_intervals_theory">Intervals can be identified by the amount of half-steps it consists of. Essentially, a half-step is how many keys on the piano we have to move to play the interval. When we name intervals, however, we base the name on how many white keys we move. Playing a C and an E on a piano requires us to move four keys, but only three white keys. Thus we move four half-steps, and the interval is called a major third.</string>
+    <string name="major_or_minor">Major or minor?</string>
+    <string name="chords">Chords</string>
+    <string name="chords_theory">Chords are simply three or more notes played at the same time. If the notes are spaced out it’s called an arpeggio, but they are still considered chords for our purposes.’</string>
+    <string name="triads_theory">Triads are chords consisting of three notes. The most basic chords are the major and minor chords. Start on any root note and play a major third and a perfect fifth, and you have a major chord. Replace the major third with a minor third and you have a minor chord. Replace the perfect fifth with an augmented fifth instead and you have an augmented chord. Replace the perfect fifth in a minor chord with a diminished fifth, and you have a diminished chord. As you can see, the chord names are based on the intervals within the chord, and figuring out the notes of unknown chords thus becomes intuitive once you know the naming system.</string>
+    <string name="triads">Triads</string>
+    <string name="bigger_chords">Bigger chords</string>
+    <string name="bigger_chords_theory">Chords beyond our basic triads are basically just a triad with some added notes. A C7, is a C major chord with an added minor seventh, a Cmaj7 is a C major chord with an adden major seventh, and a Cmin7 is a C minor chord with an added minor seventh, and so on and so on.</string>
 </resources>
