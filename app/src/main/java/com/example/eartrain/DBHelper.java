@@ -25,8 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-
-        // create notes table
+        //db.execSQL();
     }
 
     // Upgrading database
