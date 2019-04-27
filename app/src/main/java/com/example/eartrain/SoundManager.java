@@ -52,7 +52,38 @@ public class SoundManager
             {
                 m_mediaPlayer.reset();
             }
-        }, 1000);
+        }, 5000);
+    }
+
+    void playInterval(final Context i_context, int i_midiNo1, final int i_midiNo2, int i_delay)
+    {
+        play(i_context, i_midiNo1);
+        new Handler().postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                new SoundManager().play(i_context, i_midiNo2);
+            }
+        }, i_delay);
+    }
+
+    void playChord(final Context i_context, final int[] i_midiNumbers, int i_delay)
+    {
+        for (int i = 0; i < i_midiNumbers.length; i++)
+        {
+            final int index = i;
+            new Handler().postDelayed(new Runnable()
+            {
+
+                @Override
+                public void run()
+                {
+                    new SoundManager().play(i_context, i_midiNumbers[index]);
+                }
+            }, i_delay * i);
+        }
     }
 
     void reset()
