@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity
         chordButton = findViewById(R.id.btn_chord);
         chordButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ChordActivity.class));
+                Intent intent = new Intent(MainActivity.this, ChordActivity.class);
+                intent.putExtra("MODE", ChordActivity.Mode.DESCENDING.getValue());
+                startActivity(intent);
 
             }
         });
