@@ -22,8 +22,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:background="@drawable/circle"
+        android:foreground="@drawable/playsound"
         android:text="PLAY SOUND"
-        android:textSize="32sp"/>
+        />
+
+    <TextView
+
+        android:id="@+id/textViewPlaySound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
+        android:text="Play Sound"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@+id/btn_play"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +57,9 @@
             android:id="@+id/bar_note_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+
+            />
 
     </RelativeLayout>
 
