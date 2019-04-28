@@ -29,6 +29,26 @@ public class ReplicationActivity extends AppCompatActivity
 {
     private final String TAG = "ReplicationActivity";
 
+    enum Mode
+    {
+        ASCENDING(0),
+        DESCENDING(1),
+        MIXED(2);
+
+        private int m_value;
+
+        Mode(int value)
+        {
+            m_value = value;
+        }
+
+        int getValue()
+        {
+            return m_value;
+        }
+    }
+
+    Mode m_mode;
     int m_targetNote;               // The note the user should hit
     double m_noteTime;              // How long the user has held a note
     double m_lastTime;              // The last measured time
@@ -65,6 +85,8 @@ public class ReplicationActivity extends AppCompatActivity
         m_btnMicrophone = findViewById(R.id.btn_microphone);
         m_barNoteTime = findViewById(R.id.bar_note_time);
         m_txtPitch = findViewById(R.id.txt_pitch);
+
+        m_mode = Mode.values()[getIntent().getIntExtra("MODE", 0)];
     }
 
     /**
@@ -77,7 +99,6 @@ public class ReplicationActivity extends AppCompatActivity
     {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         {
-            Log.d("AYYY", "Permission granted");
             // Permission granted
             AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
             PitchDetectionHandler pdh = new PitchDetectionHandler()
@@ -134,7 +155,29 @@ public class ReplicationActivity extends AppCompatActivity
         Interval interval = Interval.values()[halfSteps];
 
         int tempRootNote = m_targetNote;
-        if (true /* TODO: mode == ascending */)
+        boolean ascending = true;
+        switch(m_mode)
+        {
+            case ASCENDING:
+                ascending = true;
+                break;
+            case DESCENDING:
+                ascending = false;
+                break;
+            case MIXED:
+                if (new Random().nextInt(2) == 1)
+                {
+                    ascending = true;
+                }
+                else
+                {
+                    ascending = false;
+                }
+                break;
+        }
+        final int rootNote = tempRootNote;
+
+        if (ascending)
         {
             tempRootNote -= halfSteps;
         }
@@ -142,7 +185,6 @@ public class ReplicationActivity extends AppCompatActivity
         {
             tempRootNote += halfSteps;
         }
-        final int rootNote = tempRootNote;
 
         // Play the root note
         m_btnPlay.setOnClickListener(new View.OnClickListener()
@@ -159,7 +201,7 @@ public class ReplicationActivity extends AppCompatActivity
         String instruction = String.format(
                 getString(R.string.interval_singing_instruction),
                 interval,
-                "above" // TODO: Randomise this
+                ascending ? ("above") : ("below")
         );
         m_txtInstruction.setText(instruction);
     }
@@ -175,7 +217,6 @@ public class ReplicationActivity extends AppCompatActivity
         m_totalTime += seconds;
         m_currentRoundTime += seconds;
         m_lastNanoTime = time;
-        Log.d(TAG, "handlePitchUpdate: " + m_currentRoundTime);
         if (m_currentRoundTime < 4.5f)
         {
             return; // Safeguard against played note being recognised as the user singing
@@ -188,7 +229,7 @@ public class ReplicationActivity extends AppCompatActivity
 
             // Perform pitch calculations
             // TODO: Fetch cent range from prefs
-            int midiNumber = (int)Math.round(69 + 12 * Math.log(pitch / 440.0) / Math.log(2));
+            int midiNumber = (int) Math.round(69 + 12 * Math.log(pitch / 440.0) / Math.log(2));
 
             // Check if user has held a pitch for more than the required amount of time
             if (m_noteTime > 2.5f /* TODO: Magic number */)
@@ -203,6 +244,7 @@ public class ReplicationActivity extends AppCompatActivity
 
                 if (m_currentRound == 10)
                 {
+                    m_currentRound = 0;
                     // Go to results screen.
                     Intent intent = new Intent(
                             ReplicationActivity.this,
@@ -226,7 +268,7 @@ public class ReplicationActivity extends AppCompatActivity
             m_noteTime = 0.0;
         }
 
-        m_barNoteTime.setProgress((int)(m_noteTime * 100 / 2.5f));
+        m_barNoteTime.setProgress((int) (m_noteTime * 100 / 2.5f));
     }
 
     /**
@@ -283,5 +325,11 @@ public class ReplicationActivity extends AppCompatActivity
         note += ((int)Math.round(n) / 12 - 1);
 
         return note;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
     }
 }

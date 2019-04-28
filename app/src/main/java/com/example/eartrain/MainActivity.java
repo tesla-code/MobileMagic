@@ -87,7 +87,9 @@ public class MainActivity extends AppCompatActivity
         replicationButton = findViewById(R.id.btn_replication);
         replicationButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
+                Intent intent = new Intent(MainActivity.this, ReplicationActivity.class);
+                intent.putExtra("MODE", ReplicationActivity.Mode.MIXED.getValue());
+                startActivity(intent);
             }
         });
 
