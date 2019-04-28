@@ -21,7 +21,7 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 public class MainActivity extends AppCompatActivity
 {
     StorageHandler storageHandler;
-    Button chordButton, intervalButton, statButton, replicationButton;
+    Button chordButton, intervalButton, statButton, replicationButton, theoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity
         statButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
+            }
+        });
+        theoryButton = findViewById(R.id.btn_theory);
+        theoryButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), TheoryActivity.class));
             }
         });
     }
