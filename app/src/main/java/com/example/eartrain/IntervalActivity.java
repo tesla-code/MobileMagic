@@ -45,7 +45,6 @@ public class IntervalActivity extends AppCompatActivity
     int m_score;                    // The current score
     double m_lastNanoTime;          // The last elapsed time in nanoseconds
     double m_totalTime;             // The time spent in total since training started
-    double m_totalRoundTime;        // The time so far this round
     Mode m_mode;                    // The exercise mode
     SoundManager m_soundManager;    // Plays sounds
 
@@ -82,7 +81,6 @@ public class IntervalActivity extends AppCompatActivity
         m_currentRound = 0;
         m_correctAnswers = 0;
         m_totalTime = 0;
-        m_lastNanoTime = System.nanoTime();
 
         m_mode = Mode.values()[getIntent().getIntExtra("MODE", 0)];
 
@@ -98,6 +96,8 @@ public class IntervalActivity extends AppCompatActivity
     {
         m_txtSuccessCounter.setText(m_correctAnswers + "/" + m_currentRound);
         m_currentRound++;
+
+        m_lastNanoTime = System.nanoTime();
 
         // Randomise interval and root note, and play sound
         m_correctInterval = Interval.values()[new Random().nextInt(3)];
@@ -182,19 +182,16 @@ public class IntervalActivity extends AppCompatActivity
         {
             button.setBackgroundColor(Color.GREEN);
 
-            double time = System.nanoTime();
-            double seconds = time - m_lastNanoTime / 1000000000.0;
-            m_totalRoundTime += seconds;
+            double seconds = (System.nanoTime() - m_lastNanoTime) / 1000000000.0;
+            Log.d("SECONDS", "" + seconds);
             m_totalTime += seconds;
-            m_lastNanoTime = time;
-            Log.d("SECONDS", "" + m_totalRoundTime);
 
             if (m_firstTry)
             {
                 // The user was successful
                 m_correctAnswers++;
                 m_score += 100; // TODO: Don't hardcode the score calculation constants
-                m_score += (10.0 - m_totalRoundTime) * 50;
+                m_score += (10.0 - seconds) * 50;
             }
 
             if (m_currentRound == 10 /* TODO: Don't magic number */)
