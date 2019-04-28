@@ -8,8 +8,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 
 public class ReplicationActivity extends AppCompatActivity
 {
+    private final String TAG = "ReplicationActivity";
+
     int m_targetNote;               // The note the user should hit
     double m_noteTime;              // How long the user has held a note
     double m_lastTime;              // The last measured time
@@ -32,14 +36,16 @@ public class ReplicationActivity extends AppCompatActivity
     int m_currentRound;             // The current round
     int m_score;                    // The current score
     long m_lastNanoTime;            // The last nano time
-    int m_totalTime;                // The total time so far
+    double m_totalTime;             // The total time so far
+    double m_currentRoundTime;      // The total time in the current round so far
 
     // UI elements
     TextView m_txtSuccessCounter;   // Measures successful interval singing
     Button m_btnPlay;               // Replays audio
     TextView m_txtInstruction;      // Instructs the user to sing an interval
     Button m_btnMicrophone;         // Mutes/unmutes microphone if pressed
-    ProgressBar m_barNoteTime;      // Shows how long a note has been held for
+    SeekBar m_barNoteTime;          // Shows how long a note has been held for
+    TextView m_txtPitch;            // DEBUG: Displays pitch
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,6 +64,7 @@ public class ReplicationActivity extends AppCompatActivity
         m_txtInstruction = findViewById(R.id.txt_instruction);
         m_btnMicrophone = findViewById(R.id.btn_microphone);
         m_barNoteTime = findViewById(R.id.bar_note_time);
+        m_txtPitch = findViewById(R.id.txt_pitch);
     }
 
     /**
@@ -107,20 +114,46 @@ public class ReplicationActivity extends AppCompatActivity
         }
 
         m_currentRound = 0;
+        m_totalTime = 0;
+        m_lastNanoTime = System.nanoTime();
         startNextRound();
     }
 
     private void startNextRound()
     {
+        m_currentRoundTime = 0.0f;
         m_currentRound++;
-        m_lastNanoTime = System.nanoTime();
+        m_noteTime = 0.0f;
 
-        // Randomise target note, select an interval, and play root note
+        m_txtSuccessCounter.setText(m_correctAnswers + "/10");
+
+        // Randomise target note and interval
         // TODO: Base target note on pitch range in prefs
-        m_targetNote = new Random().nextInt(48) + 24;
+        m_targetNote = new Random().nextInt(24) + 48;
         int halfSteps = new Random().nextInt(Interval.values().length);
         Interval interval = Interval.values()[halfSteps];
 
+        int tempRootNote = m_targetNote;
+        if (true /* TODO: mode == ascending */)
+        {
+            tempRootNote -= halfSteps;
+        }
+        else
+        {
+            tempRootNote += halfSteps;
+        }
+        final int rootNote = tempRootNote;
+
+        // Play the root note
+        m_btnPlay.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new SoundManager().play(getApplicationContext(), rootNote);
+            }
+        });
+        m_btnPlay.callOnClick();
 
         // Display instruction to sing the interval
         String instruction = String.format(
@@ -137,28 +170,35 @@ public class ReplicationActivity extends AppCompatActivity
      */
     protected void handlePitchUpdate(final float pitch)
     {
+        long time = System.nanoTime();
+        double seconds = (time - m_lastNanoTime) / 1000000000.0;
+        m_totalTime += seconds;
+        m_currentRoundTime += seconds;
+        m_lastNanoTime = time;
+        Log.d(TAG, "handlePitchUpdate: " + m_currentRoundTime);
+        if (m_currentRoundTime < 4.5f)
+        {
+            return; // Safeguard against played note being recognised as the user singing
+        }
+        m_txtPitch.setText("" + pitch);
         if (pitch != -1)
         {
             // Get time since last update.
-            double time = System.nanoTime();
-            double dt = time - m_lastTime;
-            m_noteTime += dt;
-            m_lastTime = time;
+            m_noteTime += seconds;
 
             // Perform pitch calculations
             // TODO: Fetch cent range from prefs
             int midiNumber = (int)Math.round(69 + 12 * Math.log(pitch / 440.0) / Math.log(2));
-            double seconds = (System.nanoTime() - m_lastNanoTime) / 1000000000.0;
 
             // Check if user has held a pitch for more than the required amount of time
-            if (m_noteTime > 1.0 /* TODO: Magic number */)
+            if (m_noteTime > 2.5f /* TODO: Magic number */)
             {
                 // Check if the note is correct
                 if (midiNumber == m_targetNote)
                 {
                     m_correctAnswers++;
                     m_score += 100; // TODO: Don't hardcode the score calculation constants
-                    m_score += (10.0 - seconds) * 50;
+                    m_score += (10.0 - m_currentRoundTime) * 50;
                 }
 
                 if (m_currentRound == 10)
@@ -174,6 +214,10 @@ public class ReplicationActivity extends AppCompatActivity
                     finish();
                     startActivity(intent);
                 }
+                else
+                {
+                    startNextRound();
+                }
             }
         }
         else
@@ -181,6 +225,8 @@ public class ReplicationActivity extends AppCompatActivity
             // No pitch detected
             m_noteTime = 0.0;
         }
+
+        m_barNoteTime.setProgress((int)(m_noteTime * 100 / 2.5f));
     }
 
     /**

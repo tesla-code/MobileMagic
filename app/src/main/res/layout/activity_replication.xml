@@ -25,11 +25,12 @@
         android:text="@string/play_sound"
         android:textSize="32sp"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/btn_play"
-        android:padding="8dp" >
+        android:padding="8dp"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/txt_instruction"
@@ -38,22 +39,26 @@
             android:textSize="32sp"
             android:gravity="center"
             android:text="@string/interval_singing_instruction_default"
-            android:padding="12dip"
-            android:layout_above="@id/btn_microphone"/>
+            android:padding="12dip" />
 
         <Button
             android:id="@+id/btn_microphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/insert_microphone"
-            android:layout_centerInParent="true"/>
+            android:padding="12dip"/>
 
-        <ProgressBar
+        <SeekBar
             android:id="@+id/bar_note_time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:padding="12dip" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/txt_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </RelativeLayout>
