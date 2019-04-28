@@ -87,7 +87,7 @@
     <string name="statistics_button_text">Statistics</string>
 
     <string name="achievement_1_chad">Chad</string>
-    <string name="achievement_2_diamond">Shine Birght</string>
+    <string name="achievement_2_diamond">Shiney</string>
     <string name="Achievement_headline">Achievements</string>
     <string name="achievement_3_trophy">Trophy</string>
     <string name="intervals">Intervals</string>
@@ -101,4 +101,5 @@
     <string name="triads">Triads</string>
     <string name="bigger_chords">Bigger chords</string>
     <string name="bigger_chords_theory">Chords beyond our basic triads are basically just a triad with some added notes. A C7, is a C major chord with an added minor seventh, a Cmaj7 is a C major chord with an adden major seventh, and a Cmin7 is a C minor chord with an added minor seventh, and so on and so on.</string>
+    <string name="btn_comp_text">Competitive</string>
 </resources>
