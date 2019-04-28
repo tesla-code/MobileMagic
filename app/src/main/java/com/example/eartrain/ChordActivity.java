@@ -1,5 +1,8 @@
 package com.example.eartrain;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -128,11 +131,66 @@ public class ChordActivity extends AppCompatActivity
             }
         });
 
+        setUpChordButton(Chord.MAJOR, m_btnMaj);
+        setUpChordButton(Chord.MINOR, m_btnMin);
+        setUpChordButton(Chord.AUGMENTED, m_btnAug);
+        setUpChordButton(Chord.DIMINISHED, m_btnDim);
         m_btnPlay.callOnClick();
 
-        //setUpIntervalButton(Interval.UNISON, m_btnUnison);
-        //setUpIntervalButton(Interval.MINOR_SECOND, m_btnMinorSecond);
-        //setUpIntervalButton(Interval.MAJOR_SECOND, m_btnMajorSecond);
         m_firstTry = true;
+    }
+
+    private void setUpChordButton(final Chord chord, final Button button)
+    {
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                selectAnswer(chord, button);
+            }
+        });
+
+        button.setBackgroundColor(Color.GRAY);
+    }
+    private void selectAnswer(Chord chord, Button button)
+    {
+        if (chord == m_correctChord)
+        {
+            button.setBackgroundColor(Color.GREEN);
+
+            double seconds = (System.nanoTime() - m_lastNanoTime) / 1000000000.0;
+            Log.d("SECONDS", "" + seconds);
+            m_totalTime += seconds;
+
+            if (m_firstTry)
+            {
+                // The user was successful
+                m_correctAnswers++;
+                m_score += 100; // TODO: Don't hardcode the score calculation constants
+                m_score += (10.0 - seconds) * 50;
+            }
+
+            if (m_currentRound == 10 /* TODO: Don't magic number */)
+            {
+                // Go to results screen.
+                Intent intent = new Intent(ChordActivity.this, TrainingResultActivity.class);
+                intent.putExtra("SCORE", m_score);
+                intent.putExtra("TIME", m_totalTime);
+                intent.putExtra("CORRECT", m_correctAnswers);
+                finish();
+                startActivity(intent);
+            }
+            else
+            {
+                // More rounds to go
+                startNextRound();
+            }
+        }
+        else
+        {
+            button.setBackgroundColor(Color.RED);
+            m_firstTry = false;
+        }
     }
 }
