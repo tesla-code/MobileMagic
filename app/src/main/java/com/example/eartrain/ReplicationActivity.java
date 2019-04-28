@@ -175,7 +175,6 @@ public class ReplicationActivity extends AppCompatActivity
                 }
                 break;
         }
-        final int rootNote = tempRootNote;
 
         if (ascending)
         {
@@ -185,6 +184,9 @@ public class ReplicationActivity extends AppCompatActivity
         {
             tempRootNote += halfSteps;
         }
+
+        final int rootNote = tempRootNote;
+
 
         // Play the root note
         m_btnPlay.setOnClickListener(new View.OnClickListener()
