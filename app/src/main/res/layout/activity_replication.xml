@@ -15,14 +15,14 @@
         android:layout_centerHorizontal="true"
         android:textSize="32sp"
         android:padding="16dp"
-        android:text="0/10"/>
+        android:text="@string/score_placeholder"/>
 
     <Button
         android:id="@+id/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="PLAY SOUND"
+        android:text="@string/play_sound"
         android:textSize="32sp"/>
 
     <RelativeLayout
@@ -31,18 +31,28 @@
         android:layout_below="@+id/btn_play"
         android:padding="8dp" >
 
+        <TextView
+            android:id="@+id/txt_instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="@string/interval_singing_instruction_default"
+            android:padding="12dip"
+            android:layout_above="@id/btn_microphone"/>
+
         <Button
             android:id="@+id/btn_microphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="insert microphone"
+            android:text="@string/insert_microphone"
             android:layout_centerInParent="true"/>
 
         <ProgressBar
             android:id="@+id/bar_note_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 

@@ -1,6 +1,8 @@
 package com.example.eartrain;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -20,15 +25,21 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 
 public class ReplicationActivity extends AppCompatActivity
 {
-    int m_targetNote;           // The note the user should hit
-    double m_noteTime;          // How long the user has held a note
-    double m_lastTime;          // The last measured time
-    int m_correctAnswers;       // The amount of correct notes sung.
+    int m_targetNote;               // The note the user should hit
+    double m_noteTime;              // How long the user has held a note
+    double m_lastTime;              // The last measured time
+    int m_correctAnswers;           // The amount of correct notes sung.
+    int m_currentRound;             // The current round
+    int m_score;                    // The current score
+    long m_lastNanoTime;            // The last nano time
+    int m_totalTime;                // The total time so far
 
     // UI elements
-    Button m_btnPlay;
-    Button m_btnMicrophone;
-    ProgressBar m_barNoteTime;
+    TextView m_txtSuccessCounter;   // Measures successful interval singing
+    Button m_btnPlay;               // Replays audio
+    TextView m_txtInstruction;      // Instructs the user to sing an interval
+    Button m_btnMicrophone;         // Mutes/unmutes microphone if pressed
+    ProgressBar m_barNoteTime;      // Shows how long a note has been held for
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +52,12 @@ public class ReplicationActivity extends AppCompatActivity
                 new String[]{Manifest.permission.RECORD_AUDIO},
                 1
         );
+
+        m_txtSuccessCounter = findViewById(R.id.txt_success_counter);
+        m_btnPlay = findViewById(R.id.btn_play);
+        m_txtInstruction = findViewById(R.id.txt_instruction);
+        m_btnMicrophone = findViewById(R.id.btn_microphone);
+        m_barNoteTime = findViewById(R.id.bar_note_time);
     }
 
     /**
@@ -88,6 +105,30 @@ public class ReplicationActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "FUCK", Toast.LENGTH_LONG).show();
             finish();
         }
+
+        m_currentRound = 0;
+        startNextRound();
+    }
+
+    private void startNextRound()
+    {
+        m_currentRound++;
+        m_lastNanoTime = System.nanoTime();
+
+        // Randomise target note, select an interval, and play root note
+        // TODO: Base target note on pitch range in prefs
+        m_targetNote = new Random().nextInt(48) + 24;
+        int halfSteps = new Random().nextInt(Interval.values().length);
+        Interval interval = Interval.values()[halfSteps];
+
+
+        // Display instruction to sing the interval
+        String instruction = String.format(
+                getString(R.string.interval_singing_instruction),
+                interval,
+                "above" // TODO: Randomise this
+        );
+        m_txtInstruction.setText(instruction);
     }
 
     /**
@@ -105,7 +146,9 @@ public class ReplicationActivity extends AppCompatActivity
             m_lastTime = time;
 
             // Perform pitch calculations
-            double midiNumber = 69 + 12 * Math.log(pitch / 440.0) / Math.log(2);
+            // TODO: Fetch cent range from prefs
+            int midiNumber = (int)Math.round(69 + 12 * Math.log(pitch / 440.0) / Math.log(2));
+            double seconds = (System.nanoTime() - m_lastNanoTime) / 1000000000.0;
 
             // Check if user has held a pitch for more than the required amount of time
             if (m_noteTime > 1.0 /* TODO: Magic number */)
@@ -114,6 +157,22 @@ public class ReplicationActivity extends AppCompatActivity
                 if (midiNumber == m_targetNote)
                 {
                     m_correctAnswers++;
+                    m_score += 100; // TODO: Don't hardcode the score calculation constants
+                    m_score += (10.0 - seconds) * 50;
+                }
+
+                if (m_currentRound == 10)
+                {
+                    // Go to results screen.
+                    Intent intent = new Intent(
+                            ReplicationActivity.this,
+                            TrainingResultActivity.class
+                    );
+                    intent.putExtra("SCORE", m_score);
+                    intent.putExtra("TIME", m_totalTime);
+                    intent.putExtra("CORRECT", m_correctAnswers);
+                    finish();
+                    startActivity(intent);
                 }
             }
         }

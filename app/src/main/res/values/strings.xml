@@ -85,4 +85,9 @@
     <string name="TheoryButton_text">Theory</string>
     <string name="Theory_button_text">Theory</string>
     <string name="statistics_button_text">Statistics</string>
+    <string name="play_sound">PLAY SOUND</string>
+    <string name="insert_microphone">insert microphone</string>
+    <string name="score_placeholder">0/10</string>
+    <string name="interval_singing_instruction_default">Sing a minor third</string>
+    <string name="interval_singing_instruction">Sing a %1$s %2$s the root note.</string>
 </resources>
