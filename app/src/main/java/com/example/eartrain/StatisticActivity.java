@@ -36,6 +36,7 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
         m_chart.setScaleEnabled(false);
         ArrayList<Entry> yValues = new ArrayList<>();
 
+        // Update these points based on storage
         yValues.add(new Entry(0, 60f));
         yValues.add(new Entry(1, 50f));
         yValues.add(new Entry(2, 70f));
@@ -44,7 +45,7 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
         yValues.add(new Entry(5, 60f));
         yValues.add(new Entry(6, 65f));
 
-        LineDataSet set1 = new LineDataSet(yValues, "Data set 1");
+        LineDataSet set1 = new LineDataSet(yValues, "Points Gained");
 
         set1.setFillAlpha(110);
 
