@@ -31,7 +31,7 @@ public class ExerciseListActivity extends AppCompatActivity
         m_layoutManager = new LinearLayoutManager(this);
         m_recyclerView.setLayoutManager(m_layoutManager);
 
-        m_adapter = new ExerciseListAdapter(exercises);
+        m_adapter = new ExerciseListAdapter(this, exercises);
         m_recyclerView.setAdapter(m_adapter);
     }
 
@@ -39,17 +39,32 @@ public class ExerciseListActivity extends AppCompatActivity
     {
         return new Exercise[]{
             new Exercise(
-                "Unisons and ascending seconds",
-                "Start here.",
-                new Interval[]{
-                    Interval.UNISON,
-                    Interval.MINOR_SECOND,
-                    Interval.MAJOR_SECOND
-                },
-                null,
-                0,  // TODO: Fetch last 3 from storage
-                0,
-                0
+                    "Unisons and ascending seconds",
+                    "Start here.",
+                    new Interval[]{
+                            Interval.UNISON,
+                            Interval.MINOR_SECOND,
+                            Interval.MAJOR_SECOND
+                    },
+                    null,
+                    0,  // TODO: Fetch last 3 from storage
+                    0,
+                    0
+            ),
+            new Exercise(
+                    "Unisons and ascending seconds",
+                    "Start here.",
+                    new Interval[]{
+                            Interval.UNISON,
+                            Interval.MINOR_SECOND,
+                            Interval.MAJOR_SECOND,
+                            Interval.MINOR_THIRD,
+                            Interval.MAJOR_THIRD
+                    },
+                    null,
+                    0,  // TODO: Fetch last 3 from storage
+                    0,
+                    0
             )
         };
     }

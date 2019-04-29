@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         intervalButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ExerciseListActivity.class);
-                //intent.putExtra("MODE", IntervalActivity.Mode.DESCENDING.getValue());
+
                 startActivity(intent);
             }
         });

@@ -1,5 +1,7 @@
 package com.example.eartrain;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -16,11 +19,13 @@ import static android.content.ContentValues.TAG;
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>
 {
     Exercise[] m_exercises;
+    Context m_context;
 
-    public ExerciseListAdapter(Exercise[] exercises)
+    public ExerciseListAdapter(Context context, Exercise[] exercises)
     {
         Log.d(TAG, "ExerciseListAdapter: NOT DAB");
         m_exercises = exercises;
+        m_context = context;
     }
 
     @NonNull
@@ -36,13 +41,37 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i)
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i)
     {
         viewHolder.m_txtTitle.setText(m_exercises[i].getTitle());
         viewHolder.m_txtDescription.setText(m_exercises[i].getDescription());
         viewHolder.m_txtSuccesses.setText("" + m_exercises[i].getSuccesses());
         viewHolder.m_txtScore.setText("" + m_exercises[i].getScore());
         viewHolder.m_txtTime.setText("" + m_exercises[i].getTime());
+
+        viewHolder.m_btnStart.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(m_context, IntervalActivity.class);
+                intent.putExtra("MODE", IntervalActivity.Mode.DESCENDING.getValue());
+                Interval[] intervals = m_exercises[i].getIntervals();
+                ArrayList<Integer> intervalHalfSteps = new ArrayList<>();
+                for (int i = 0; i < intervals.length; i++)
+                {
+                    intervalHalfSteps.add(intervals[i].size());
+                }
+                int[] arr = new int[intervalHalfSteps.toArray().length];
+                for (int i = 0; i < arr.length; i++)
+                {
+                    arr[i] = (int)intervalHalfSteps.toArray()[i];
+                }
+                Log.d(TAG, "onClick: " + (int)intervalHalfSteps.toArray()[1]);
+                intent.putExtra("INTERVALS", arr);
+                m_context.startActivity(intent);
+            }
+        });
     }
 
     @Override

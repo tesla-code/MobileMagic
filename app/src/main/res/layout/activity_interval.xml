@@ -40,31 +40,85 @@ tools:showIn="@layout/activity_interval">
             android:layout_below="@+id/btn_play"
             />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textViewPlaySound"
-        android:padding="8dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_unison"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPlaySound">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="unison"/>
+            android:padding="8dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_minor_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="minor second" />
+            <Button
+                android:id="@+id/btn_unison"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="unison"/>
 
-        <Button
-            android:id="@+id/btn_major_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="major second" />
+            <Button
+                android:id="@+id/btn_minor_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="minor second" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_major_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_minor_third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_major_third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_perfect_fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_augmented_fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_perfect_fifth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_minor_sixth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_major_sixth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_minor_seventh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_major_seventh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+            <Button
+                android:id="@+id/btn_octave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="major second" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
