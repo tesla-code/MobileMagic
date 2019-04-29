@@ -109,4 +109,7 @@
     <string name="exercise_description_placeholder">Time to get those ears worked out!</string>
     <string name="best_score">Best score</string>
     <string name="start">Start</string>
+    <string name="txt_success_placeholder">9/10</string>
+    <string name="txt_score_placeholder">1337</string>
+    <string name="txt_time_placeholder">69.69s</string>
 </resources>
