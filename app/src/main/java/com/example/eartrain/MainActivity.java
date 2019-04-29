@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity
         chordButton = findViewById(R.id.btn_chord);
         chordButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ChordActivity.class));
+                Intent intent = new Intent(MainActivity.this, ChordActivity.class);
+                intent.putExtra("MODE", ChordActivity.Mode.ASCENDING.getValue());
+                startActivity(intent);
 
             }
         });
@@ -87,7 +89,9 @@ public class MainActivity extends AppCompatActivity
         replicationButton = findViewById(R.id.btn_replication);
         replicationButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ReplicationActivity.class));
+                Intent intent = new Intent(MainActivity.this, ReplicationActivity.class);
+                intent.putExtra("MODE", ReplicationActivity.Mode.MIXED.getValue());
+                startActivity(intent);
             }
         });
 
