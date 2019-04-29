@@ -2,6 +2,7 @@ package com.example.eartrain;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>
 {
     Exercise[] m_exercises;
 
     public ExerciseListAdapter(Exercise[] exercises)
     {
+        Log.d(TAG, "ExerciseListAdapter: NOT DAB");
         m_exercises = exercises;
     }
 
@@ -23,6 +27,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
+        Log.d(TAG, "onCreateViewHolder: DABn'n't");
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.exercise_list_layout, viewGroup, false);
 
@@ -34,16 +39,16 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i)
     {
         viewHolder.m_txtTitle.setText(m_exercises[i].getTitle());
-        viewHolder.m_txtDescription.setText(m_exercises[i].getTitle());
-        viewHolder.m_txtSuccesses.setText(m_exercises[i].getSuccesses());
-        viewHolder.m_txtScore.setText(m_exercises[i].getScore());
+        viewHolder.m_txtDescription.setText(m_exercises[i].getDescription());
+        viewHolder.m_txtSuccesses.setText("" + m_exercises[i].getSuccesses());
+        viewHolder.m_txtScore.setText("" + m_exercises[i].getScore());
         viewHolder.m_txtTime.setText("" + m_exercises[i].getTime());
     }
 
     @Override
     public int getItemCount()
     {
-        return 0;
+        return m_exercises.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
