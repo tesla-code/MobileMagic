@@ -105,4 +105,8 @@
     <string name="triads">Triads</string>
     <string name="bigger_chords">Bigger chords</string>
     <string name="bigger_chords_theory">Chords beyond our basic triads are basically just a triad with some added notes. A C7, is a C major chord with an added minor seventh, a Cmaj7 is a C major chord with an adden major seventh, and a Cmin7 is a C minor chord with an added minor seventh, and so on and so on.</string>
+    <string name="exercise_title_placeholder">Exercise Title</string>
+    <string name="exercise_description_placeholder">Time to get those ears worked out!</string>
+    <string name="best_score">Best score</string>
+    <string name="start">Start</string>
 </resources>

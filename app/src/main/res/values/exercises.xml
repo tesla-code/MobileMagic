@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="interval_training_exercises">
+        <item>
+            <title>Unisons and ascending seconds</title>
+            <description>Yeehaw</description>
+            <intervals>
+                <item>unison</item>
+                <item>minor_second</item>
+                <item>major_second</item>
+            </intervals>
+            <mode>ascending</mode>
+        </item>
+    </array>
+</resources>
