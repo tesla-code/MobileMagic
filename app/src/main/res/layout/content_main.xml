@@ -51,14 +51,14 @@
         android:id="@+id/btn_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/circle"
         android:foreground="@drawable/stats"
         android:text="@string/button_stats"
         android:textColor="#Fff"
         app:layout_constraintStart_toEndOf="@+id/btn_chord"
-        app:layout_constraintTop_toBottomOf="@+id/btn_replication" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/btn_theory"
@@ -86,8 +86,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="147dp"
-        android:layout_height="39dp"
+        android:layout_width="158dp"
+        android:layout_height="63dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="4dp"
         android:text="@string/ChordTraining_button_text"
@@ -97,8 +97,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="185dp"
-        android:layout_height="39dp"
+        android:layout_width="187dp"
+        android:layout_height="49dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:text="@string/IntervalTraining_button_text"
@@ -108,10 +108,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="160dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="262dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:text="@string/Repetition_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -132,8 +132,8 @@
         android:id="@+id/textView5"
         android:layout_width="121dp"
         android:layout_height="43dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
         android:text="@string/statistics_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/textView"
