@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReplicationActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".IntervalActivity"
+    tools:showIn="@layout/activity_replication">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/txt_success_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="32sp"
+        android:padding="16dp"
+        android:text="@string/score_placeholder"/>
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle"
+        android:foreground="@drawable/playsound"
+        android:text="@string/play_sound"
+        android:textSize="32sp"/>
+        />
+
+    <TextView
+
+        android:id="@+id/textViewPlaySound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
+        android:text="Play Sound"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@+id/btn_play"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_play"
+        android:padding="8dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="@string/interval_singing_instruction_default"
+            android:padding="12dip" />
+
+        <Button
+            android:id="@+id/btn_microphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/insert_microphone"
+            android:padding="12dip"/>
+
+        <SeekBar
+            android:id="@+id/bar_note_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            />
+            android:padding="12dip" />
+
+        <TextView
+            android:id="@+id/txt_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>
