@@ -3,6 +3,7 @@ package com.example.eartrain;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -15,18 +16,20 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticActivity extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener
 {
     private static final String TAG = "StatisticActivity";
     private LineChart m_chart;
+    private List<Achievement> allAchievements;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
-
+        allAchievements = (List<Achievement>) getIntent().getSerializableExtra("achievementsList");
         m_chart = (LineChart) findViewById(R.id.linechart);
 
         m_chart.setOnChartGestureListener(StatisticActivity.this);
@@ -61,6 +64,7 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
 
         m_chart.setData(data);
 
+        Toast.makeText(getApplicationContext(), Integer.toString(allAchievements.size()), Toast.LENGTH_LONG).show();
     }
 
     @Override
