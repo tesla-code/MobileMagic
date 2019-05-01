@@ -15,7 +15,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/circle"
-        android:foreground="@drawable/ear"
+        android:foreground="@drawable/ear2"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
