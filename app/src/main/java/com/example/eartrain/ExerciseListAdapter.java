@@ -55,7 +55,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             public void onClick(View v)
             {
                 Intent intent = new Intent(m_context, IntervalActivity.class);
-                intent.putExtra("MODE", IntervalActivity.Mode.DESCENDING.getValue());
+                intent.putExtra("MODE", m_exercises[i].getMode().getValue());
                 Interval[] intervals = m_exercises[i].getIntervals();
                 ArrayList<Integer> intervalHalfSteps = new ArrayList<>();
                 for (int i = 0; i < intervals.length; i++)

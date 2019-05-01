@@ -131,7 +131,7 @@ public class IntervalActivity extends AppCompatActivity
                 switch (m_mode)
                 {
                     case ASCENDING:
-                        new SoundManager().play(getApplicationContext(), note2);
+                        new SoundManager().play(getApplicationContext(), note1);
                         new Handler().postDelayed(new Runnable()
                         {
 
