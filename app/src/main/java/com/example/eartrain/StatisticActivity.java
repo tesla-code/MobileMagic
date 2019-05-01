@@ -48,6 +48,11 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
         LineDataSet set1 = new LineDataSet(yValues, "Points Gained");
 
         set1.setFillAlpha(110);
+        set1.setLineWidth(2f);
+        set1.setValueTextSize(7f);
+
+        // Disables the right axis
+        m_chart.getAxisRight().setEnabled(false);
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
