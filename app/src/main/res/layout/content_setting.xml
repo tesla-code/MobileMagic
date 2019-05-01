@@ -26,11 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Sensitivity"
-        tools:text="Sensitivity" />
+        tools:text="Sensitivity"
+        />
 
     <TextView
 
-        android:id="@+id/textView_value"
+        android:id="@+id/lbl_SensitivityValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value: "
@@ -38,13 +39,68 @@
         android:layout_below="@id/m_SensitivityBar"/>
 
     <TextView
+        android:id="@+id/lbl_LowNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/lbl_SensitivityValue"
+        android:layout_marginTop="30dp"
+        android:text="Low Note"/>
+
+    <NumberPicker
+        android:id="@+id/picker_LowNotePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_LowNote"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="120dp">
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/picker_LowOctavePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_LowNote"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/picker_LowNotePicker">
+    </NumberPicker>
+
+
+    <TextView
+        android:id="@+id/lbl_HighNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/lbl_LowNote"
+        android:layout_marginTop="220dp"
+        android:text="High Note"/>
+
+    <NumberPicker
+        android:id="@+id/picker_HighNotePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_HighNote"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="120dp">
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/picker_OctavePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_HighNote"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/picker_HighNotePicker">
+
+    </NumberPicker>
+<TextView
         android:id="@+id/lbl_About"
         android:layout_width="200pt"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="App made by: Benjabe, Bjornkau, Jigurd, tesla-code
-
-        Distributed under GPL 3.0 License, source code available at [kordan i nasen putter æ en hyperlink her]"/>
+        android:text="App made by: Benjabe, Bjornkau, Jigurd, tesla-code"/>
 
 </RelativeLayout>

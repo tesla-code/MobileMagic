@@ -10,7 +10,7 @@ public class SettingsActivity extends AppCompatActivity
 {
     private int m_Sensitivity = 0;
     private SeekBar mSensitivityBar;
-    private TextView value;
+    private TextView mSenseLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,13 +29,13 @@ public class SettingsActivity extends AppCompatActivity
         //set up Sensitivity bar
         mSensitivityBar = findViewById(R.id.m_SensitivityBar);
         mSensitivityBar.setProgress((m_Sensitivity-5)*5);
-        value = findViewById(R.id.textView_value);
+        mSenseLabel = findViewById(R.id.lbl_SensitivityValue);
 
         mSensitivityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
-                value.setText("Value: " + String.valueOf(progress));
+                mSenseLabel.setText("Value: " + String.valueOf(progress));
             }
 
             @Override
