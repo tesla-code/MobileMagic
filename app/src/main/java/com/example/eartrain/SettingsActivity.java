@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity
 {
-    int mSensitivity = 0;
-    SeekBar mSensitivityBar;
+    private int m_Sensitivity = 0;
+    private SeekBar mSensitivityBar;
+    private TextView value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,16 +24,18 @@ public class SettingsActivity extends AppCompatActivity
 
         //retrieve sensitivity
         final StorageHandler storageHandler = new StorageHandler(this);
-        mSensitivity = storageHandler.getSensitivity();
+        m_Sensitivity = storageHandler.getSensitivity();
 
         //set up Sensitivity bar
         mSensitivityBar = findViewById(R.id.m_SensitivityBar);
-        mSensitivityBar.setProgress((mSensitivity-5)*5);
+        mSensitivityBar.setProgress((m_Sensitivity-5)*5);
+        value = findViewById(R.id.textView_value);
+
         mSensitivityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
-
+                value.setText("Value: " + String.valueOf(progress));
             }
 
             @Override
@@ -42,12 +46,12 @@ public class SettingsActivity extends AppCompatActivity
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
-                //can't set min/max on a seekbar, this makes the range 5-30
-                mSensitivity = mSensitivityBar.getProgress()/5;
-                storageHandler.setSensitivity(mSensitivity+5);
+                // can't set min/max on a seekbar, this makes the range 5-30
+                // (the reason we cant use setMin and setMax is because the
+                // api level that we use is to low for that functionality)
+                m_Sensitivity = mSensitivityBar.getProgress()/5;
+                storageHandler.setSensitivity(m_Sensitivity+5);
             }
         });
-
     }
-
 }

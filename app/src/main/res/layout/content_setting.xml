@@ -29,6 +29,15 @@
         tools:text="Sensitivity" />
 
     <TextView
+
+        android:id="@+id/textView_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Value: "
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/m_SensitivityBar"/>
+
+    <TextView
         android:id="@+id/lbl_About"
         android:layout_width="200pt"
         android:layout_height="wrap_content"

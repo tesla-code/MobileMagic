@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ExerciseListActivity"></activity>
+        <activity android:name=".CompInterval"></activity>
+        <activity android:name=".CompActivity" />
         <activity android:name=".TheoryActivity" />
         <activity android:name=".TrainingResultActivity" />
         <activity android:name=".TutorialActivity" />
