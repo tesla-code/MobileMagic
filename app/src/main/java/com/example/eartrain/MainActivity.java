@@ -11,9 +11,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.eartrain.helpers.DataTransferHelper;
 import com.example.eartrain.models.Achievement;
+import com.example.eartrain.models.Score;
 import com.example.eartrain.singletons.DatabaseHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -82,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         statButton = findViewById(R.id.btn_stats);
         statButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
+               // startActivity(new Intent(getApplicationContext(), StatisticActivity.class));
+                getStatistics();
             }
         });
     }
@@ -143,13 +147,39 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(List<Achievement> list)
             {
                 super.onPostExecute(list);
-                Toast.makeText(getApplicationContext(), Integer.toString(list.size()), Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), Integer.toString(list.size()), Toast.LENGTH_LONG).show();
 
             }
         }
 
         CountAchievemnts ca = new CountAchievemnts();
         ca.execute();
+    }
+
+    private void getStatistics()
+    {
+        class GetStatistics extends AsyncTask<Void, Void, DataTransferHelper>
+        {
+            @Override
+            protected DataTransferHelper doInBackground(Void... voids)
+            {
+                DataTransferHelper transfer = new DataTransferHelper();
+                transfer.allAchievements = DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().getAllAchievements();
+                transfer.achievedAchievements = DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().getAchievedAchievements();
+                return transfer;
+            }
+
+            @Override
+            protected void onPostExecute(DataTransferHelper transferHelper)
+            {
+                super.onPostExecute(transferHelper);
+                Intent intent = new Intent(getApplicationContext(),StatisticActivity.class);
+                intent.putExtra("achievementsList",(ArrayList<Achievement>) transferHelper.allAchievements);
+                startActivity(intent);
+            }
+        }
+        GetStatistics gt = new GetStatistics();
+        gt.execute();
     }
 
 }

@@ -14,6 +14,9 @@ public interface AchievementDao
     @Query("SELECT * FROM achievements")
     List<Achievement> getAllAchievements();
 
+    @Query("SELECT * FROM achievements WHERE achieved = 1")
+    List<Achievement> getAchievedAchievements();
+
     @Insert
     void insert(Achievement achievement);
 
