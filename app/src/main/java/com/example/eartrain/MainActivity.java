@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     StorageHandler storageHandler;
-    Button chordButton, intervalButton, statButton, replicationButton;
+    Button chordButton, intervalButton, statButton, replicationButton, theoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUp() {
+
         //Registering buttons
         chordButton = findViewById(R.id.btn_chord);
         chordButton.setOnClickListener(new Button.OnClickListener() {
@@ -91,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 getStatistics();
+            }
+        });
+
+        theoryButton = findViewById(R.id.btn_theory);
+        theoryButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), TheoryActivity.class));
             }
         });
     }
