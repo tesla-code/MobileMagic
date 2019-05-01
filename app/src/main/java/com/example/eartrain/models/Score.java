@@ -15,4 +15,11 @@ public class Score implements Serializable
     public int score;
     public Date timeStamp;
 
+    public Score(int score, String type)
+    {
+        this.score = score;
+        this.type = type;
+        timeStamp = new Date(System.currentTimeMillis());
+    }
+
 }
