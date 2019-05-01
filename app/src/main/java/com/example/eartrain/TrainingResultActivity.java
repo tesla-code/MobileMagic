@@ -1,11 +1,16 @@
 package com.example.eartrain;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.eartrain.helpers.ScoreAddHelper;
+import com.example.eartrain.models.Score;
+import com.example.eartrain.singletons.DatabaseHandler;
 
 import java.util.Locale;
 
@@ -17,6 +22,7 @@ public class TrainingResultActivity extends AppCompatActivity
     TextView m_txtTime;
     Button m_btnQuit;
     Button m_btnContinue;
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +46,7 @@ public class TrainingResultActivity extends AppCompatActivity
 
         // Fetch extras and set text views
         Intent intent = getIntent();
+        score = intent.getIntExtra("SCORE", 0);
         // TODO: Don't hardcode these strings
         m_txtCorrect.setText("" + intent.getIntExtra("CORRECT", 0));
         m_txtScore.setText("" + intent.getIntExtra("SCORE", 0));
@@ -67,5 +74,28 @@ public class TrainingResultActivity extends AppCompatActivity
                 startActivity(continueIntent);
             }
         });
+        addScore(score, "TYPE");
+    }
+
+    private void addScore(int score, String type)
+    {
+        class AddScoreTask extends AsyncTask<ScoreAddHelper, Void, Void>
+        {
+            @Override
+            protected Void doInBackground(ScoreAddHelper... params)
+            {
+                ScoreAddHelper addHelper = params[0];
+                Score score1 = new Score(addHelper.score,addHelper.type);
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(score1);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid)
+            {
+            }
+        }
+        AddScoreTask addScore = new AddScoreTask();
+        addScore.execute(new ScoreAddHelper(score,type));
     }
 }

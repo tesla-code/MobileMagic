@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setUp();
         tutorial();
-        addScore(9001, "test");
     }
 
     @Override
@@ -120,8 +119,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Void doInBackground(Void... voids)
             {
-                Achievement achievement = new Achievement("test", "this is not a love song");
-                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(achievement);
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Chad", "Get many points over much time"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Shiney", "Use application in fullscreen"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Trophy", "We are actually not sure"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Climber", "Get more points each day for a week - NOT IMPLEMENTED"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Rocket Man", "Rocket man burning out his fuse up here alone"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("BigSpender", "Buy the app?"));
                 return null;
             }
 
@@ -164,28 +167,6 @@ public class MainActivity extends AppCompatActivity {
         }
         GetStatistics gt = new GetStatistics();
         gt.execute();
-    }
-
-    private void addScore(int score, String type)
-    {
-        class AddScoreTask extends AsyncTask<ScoreAddHelper, Void, Void>
-        {
-            @Override
-            protected Void doInBackground(ScoreAddHelper... params)
-            {
-                ScoreAddHelper addHelper = params[0];
-                Score score1 = new Score(addHelper.score,addHelper.type);
-                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(score1);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid)
-            {
-            }
-        }
-        AddScoreTask addScore = new AddScoreTask();
-        addScore.execute(new ScoreAddHelper(score,type));
     }
 }
 
