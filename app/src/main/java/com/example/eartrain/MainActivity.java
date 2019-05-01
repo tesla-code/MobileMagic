@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         chordButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChordActivity.class);
-                intent.putExtra("MODE", ChordActivity.Mode.ASCENDING.getValue());
+                intent.putExtra("MODE", ChordActivity.Mode.HARMONIC.getValue());
                 startActivity(intent);
 
             }
