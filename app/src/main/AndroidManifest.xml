@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ExerciseListActivity"></activity>
         <activity android:name=".CompInterval"></activity>
         <activity android:name=".CompActivity" />
         <activity android:name=".TheoryActivity" />
