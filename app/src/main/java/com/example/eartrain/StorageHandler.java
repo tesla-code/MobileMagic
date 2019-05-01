@@ -12,6 +12,8 @@ public class StorageHandler
     SharedPreferences sharedPreferences;
     private static final String FILENAME = "Preferences";
     private static final String FIRSTTIME = "FirstTime";
+    private static final String LOWNOTE = "LowNote";
+    private static final String HIGHNOTE = "HighNote";
     private static String SENSITIVITY = "Sensitivity";
 
     /**
@@ -60,6 +62,51 @@ public class StorageHandler
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(FIRSTTIME,f);
+        editor.commit();
+    }
+
+    /**
+     *
+     *
+     * @return double lower bound on notes to be played back
+     */
+    public double getLowNote()
+    {
+        return sharedPreferences.getFloat(LOWNOTE, 40);
+    }
+
+
+    /**
+     *
+     *
+     * @param l lower bound on notes to be played back
+     */
+    public void setLowNote(double l)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat(LOWNOTE, (float)l);
+        editor.commit();
+    }
+
+    /**
+     *
+     *
+     * @return double upper bound on note to be played back
+     */
+    public double getHighNote()
+    {
+        return sharedPreferences.getFloat(HIGHNOTE, 120);
+    }
+
+    /**
+     *
+     *
+     * @param h upper bound on note to be played back
+     */
+    public void setHighNote(double h)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat(HIGHNOTE, (float)h);
         editor.commit();
     }
 }
