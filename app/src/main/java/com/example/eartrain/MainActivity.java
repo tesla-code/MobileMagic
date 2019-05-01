@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         intervalButton = findViewById(R.id.btn_interval);
         intervalButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), IntervalActivity.class));
+                Intent intent = new Intent(MainActivity.this, ExerciseListActivity.class);
+
+                startActivity(intent);
             }
         });
 

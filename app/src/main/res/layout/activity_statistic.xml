@@ -17,8 +17,8 @@
         android:id="@+id/button"
         android:layout_width="87dp"
         android:layout_height="62dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/achivement_circle"
         android:foreground="@drawable/weight"
         android:text="Button"
@@ -29,8 +29,8 @@
         android:id="@+id/textView6"
         android:layout_width="69dp"
         android:layout_height="46dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
         android:text="@string/achievement_1_chad"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +103,42 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="96dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/achivement_circle"
+        android:foreground="@drawable/mount"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="94dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/achivement_circle"
+        android:foreground="@drawable/rocket"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/achivement_circle"
+        android:foreground="@drawable/big"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
 </android.support.constraint.ConstraintLayout>

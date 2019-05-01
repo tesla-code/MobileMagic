@@ -1,80 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CompActivity"
-    tools:showIn="@layout/activity_interval">
+    tools:context=".CompActivity">
 
-    <TextView
-        android:id="@+id/txt_success_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="32sp"
-        android:padding="16dp"
-        android:text="Player1: 0/10"/>
-
-    <TextView
-        android:id="@+id/txt_success_counter2"
-        android:layout_below="@id/txt_success_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="32sp"
-        android:padding="16dp"
-        android:text="Player2: 0/10"/>
 
     <Button
-        android:id="@+id/btn_play"
+        android:id="@+id/btn_interval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="PLAY SOUND"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/circle"
-        android:foreground="@drawable/playsound"
-        ></Button>
+        android:foreground="@drawable/ear2"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/IntervalTraining_button_text"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_interval" />
 
-        android:id="@+id/textViewPlaySound"
+    <TextView
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="30dp"
-        android:text="Play Sound"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_below="@+id/btn_play"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textViewPlaySound"
-        android:padding="8dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_unison"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="unison"/>
-
-        <Button
-            android:id="@+id/btn_minor_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="minor second" />
-
-        <Button
-            android:id="@+id/btn_major_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="major second" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/comp_act_Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
