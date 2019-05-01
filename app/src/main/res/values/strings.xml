@@ -85,9 +85,13 @@
     <string name="TheoryButton_text">Theory</string>
     <string name="Theory_button_text">Theory</string>
     <string name="statistics_button_text">Statistics</string>
-
+    <string name="play_sound">PLAY SOUND</string>
+    <string name="insert_microphone">insert microphone</string>
+    <string name="score_placeholder">0/10</string>
+    <string name="interval_singing_instruction_default">Sing a minor third</string>
+    <string name="interval_singing_instruction">Sing a %1$s %2$s the root note.</string>
     <string name="achievement_1_chad">Chad</string>
-    <string name="achievement_2_diamond">Shine Birght</string>
+    <string name="achievement_2_diamond">Shiney</string>
     <string name="Achievement_headline">Achievements</string>
     <string name="achievement_3_trophy">Trophy</string>
     <string name="intervals">Intervals</string>
@@ -101,4 +105,14 @@
     <string name="triads">Triads</string>
     <string name="bigger_chords">Bigger chords</string>
     <string name="bigger_chords_theory">Chords beyond our basic triads are basically just a triad with some added notes. A C7, is a C major chord with an added minor seventh, a Cmaj7 is a C major chord with an adden major seventh, and a Cmin7 is a C minor chord with an added minor seventh, and so on and so on.</string>
+    <string name="exercise_title_placeholder">Exercise Title</string>
+    <string name="exercise_description_placeholder">Time to get those ears worked out!</string>
+    <string name="best_score">Best score</string>
+    <string name="start">Start</string>
+    <string name="txt_success_placeholder">9/10</string>
+    <string name="txt_score_placeholder">1337</string>
+    <string name="txt_time_placeholder">69.69s</string>
+    <string name="btn_comp_text">Competitive</string>
+    <string name="title_activity_comp">CompActivity</string>
+    <string name="comp_act_Title">Choose Mode</string>
 </resources>

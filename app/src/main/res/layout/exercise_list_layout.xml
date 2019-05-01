@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:text="@string/exercise_title_placeholder"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:paddingTop="3dip"/>
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:text="@string/exercise_description_placeholder"
+        android:padding="2dip"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:layout_below="@+id/txt_title"/>
+    <TextView
+        android:id="@+id/txt_score_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:text="@string/best_score"
+        android:padding="2dip"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:layout_below="@+id/txt_description"/>
+    <TextView
+        android:id="@+id/txt_successes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:text="@string/txt_success_placeholder"
+        android:padding="2dip"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:layout_below="@+id/txt_score_header"/>
+    <TextView
+        android:id="@+id/txt_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:text="@string/txt_score_placeholder"
+        android:padding="2dip"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:layout_toEndOf="@id/txt_successes"
+        android:layout_below="@+id/txt_score_header"/>
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:text="@string/txt_time_placeholder"
+        android:padding="2dip"
+        android:paddingStart="3dip"
+        android:paddingEnd="3dip"
+        android:layout_toEndOf="@id/txt_score"
+        android:layout_below="@+id/txt_score_header"/>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_description"
+        android:layout_alignParentEnd="true"
+        android:padding="3dip"
+        android:text="@string/start"/>
+
+
+</RelativeLayout>

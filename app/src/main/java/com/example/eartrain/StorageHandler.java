@@ -2,15 +2,17 @@ package com.example.eartrain;
 
 import android.content.SharedPreferences;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Class for handling all acsess to storage.
- * Implementing both SQLite and SharedPreferences
+ * Class for handling SharedPreferences
  */
 public class StorageHandler
 {
     SharedPreferences sharedPreferences;
     private static final String FILENAME = "Preferences";
+    private static final String DATABASENAME = "Database";
     private static final String FIRSTTIME = "FirstTime";
     private static final String LOWNOTE = "LowNote";
     private static final String HIGHNOTE = "HighNote";

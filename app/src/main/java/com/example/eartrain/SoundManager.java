@@ -17,6 +17,12 @@ import android.util.Log;
  */
 public class SoundManager
 {
+    public enum ChordPlayMode
+    {
+        ASCENDING,
+        DESCENDING,
+        HARMONIC
+    }
     private MediaPlayer m_mediaPlayer;
 
     public enum soundType {
@@ -83,6 +89,53 @@ public class SoundManager
                     new SoundManager().play(i_context, i_midiNumbers[index]);
                 }
             }, i_delay * i);
+        }
+    }
+
+    void playChord(final Context i_context, final int i_root, Chord i_chord, int i_delay, ChordPlayMode i_mode)
+    {
+        final Interval[] intervals = i_chord.getIntervals();
+        if (i_mode == ChordPlayMode.HARMONIC)
+        {
+            new SoundManager().play(i_context, i_root);
+            for (int i = 0; i < intervals.length; i++)
+            {
+                new SoundManager().play(i_context, i_root + intervals[i].size());
+            }
+        }
+        else
+        {
+            if (i_mode == ChordPlayMode.ASCENDING)
+            {
+                new SoundManager().play(i_context, i_root);
+            }
+
+            for (int i = 0; i < intervals.length; i++)
+            {
+                final int index = i_mode == ChordPlayMode.ASCENDING ? i : intervals.length - i - 1;
+                new Handler().postDelayed(new Runnable()
+                {
+
+                    @Override
+                    public void run()
+                    {
+                        new SoundManager().play(i_context, i_root + intervals[index].size());
+                    }
+                }, i_delay * (i + 1));
+            }
+
+            if (i_mode == ChordPlayMode.DESCENDING)
+            {
+                new Handler().postDelayed(new Runnable()
+                {
+
+                    @Override
+                    public void run()
+                    {
+                        new SoundManager().play(i_context, i_root);
+                    }
+                }, i_delay * (intervals.length + 1));
+            }
         }
     }
 

@@ -13,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:background="@drawable/circle"
-        android:foreground="@drawable/chords"
+        android:foreground="@drawable/chord"
         android:text="@string/button_chord"
         android:textColor="#Fff"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,10 @@
         android:id="@+id/btn_interval"
         android:layout_width="81dp"
         android:layout_height="77dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/circle"
-        android:foreground="@drawable/ear"
+        android:foreground="@drawable/ear2"
         android:text="@string/button_interval"
         android:textColor="#Fff"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
         android:id="@+id/btn_replication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/circle"
         android:foreground="@drawable/microphone"
         android:text="@string/button_replication"
@@ -51,33 +51,45 @@
         android:id="@+id/btn_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/circle"
         android:foreground="@drawable/stats"
         android:text="@string/button_stats"
         android:textColor="#Fff"
         app:layout_constraintStart_toEndOf="@+id/btn_chord"
-        app:layout_constraintTop_toBottomOf="@+id/btn_replication" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/btn_theory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/circle"
         android:foreground="@drawable/book"
         android:textColor="#Fff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/circle"
+        android:foreground="@drawable/comp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="147dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="158dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="4dp"
         android:text="@string/ChordTraining_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,8 +97,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="185dp"
-        android:layout_height="39dp"
+        android:layout_width="187dp"
+        android:layout_height="49dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:text="@string/IntervalTraining_button_text"
@@ -96,10 +108,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="160dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="262dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:text="@string/Repetition_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -121,10 +133,22 @@
         android:layout_width="121dp"
         android:layout_height="43dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/statistics_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/btn_stats" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/btn_comp_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_comp" />
+
 
 </android.support.constraint.ConstraintLayout>

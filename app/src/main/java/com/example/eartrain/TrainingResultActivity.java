@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class TrainingResultActivity extends AppCompatActivity
 {
     // UI elements
@@ -41,7 +43,7 @@ public class TrainingResultActivity extends AppCompatActivity
         // TODO: Don't hardcode these strings
         m_txtCorrect.setText("" + intent.getIntExtra("CORRECT", 0));
         m_txtScore.setText("" + intent.getIntExtra("SCORE", 0));
-        m_txtTime.setText("" + intent.getDoubleExtra("TIME", 0)); // TODO: Make this 2 decimals
+        m_txtTime.setText("" + String.format(Locale.ENGLISH, "%.2f", intent.getDoubleExtra("TIME", 0))+"s");
 
         // Set up quit and continue buttons
         m_btnQuit.setOnClickListener(new View.OnClickListener()
