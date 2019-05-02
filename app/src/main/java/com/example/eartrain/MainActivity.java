@@ -133,6 +133,16 @@ public class MainActivity extends AppCompatActivity {
                 DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Climber", "Get more points each day for a week - NOT IMPLEMENTED"));
                 DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("Rocket Man", "Rocket man burning out his fuse up here alone"));
                 DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().achievementDao().insert(new Achievement("BigSpender", "Buy the app?"));
+
+                // Insert dummy score values
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(60, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(50, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(70, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(30, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(50, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(60, "interval"));
+                DatabaseHandler.getInstance(getApplicationContext()).getAppDatabase().scoreDao().insert(new Score(65, "interval"));
+
                 return null;
             }
 

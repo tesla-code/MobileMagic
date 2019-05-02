@@ -22,4 +22,9 @@ public class Score implements Serializable
         timeStamp = new Date(System.currentTimeMillis());
     }
 
+    public int getScore()
+    {
+        return this.score;
+    }
+
 }

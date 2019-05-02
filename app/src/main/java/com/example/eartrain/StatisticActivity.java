@@ -2,9 +2,11 @@ package com.example.eartrain;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import com.example.eartrain.models.Score;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -23,7 +25,7 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
     private static final String TAG = "StatisticActivity";
     private LineChart m_chart;
     private List<Achievement> allAchievements;
-
+    private List<Score> m_score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +39,27 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
 
         m_chart.setDragEnabled(true);
         m_chart.setScaleEnabled(false);
+
         ArrayList<Entry> yValues = new ArrayList<>();
+        m_score = (List<Score>) getIntent().getSerializableExtra("scoreList");
+
+        Log.i("Score: ", "Score list contains: " + m_score.size() + " elements");
+
+        for(int i = 0; i < m_score.size(); i++)
+        {
+            Log.i("Score: ", " i = " + i);
+            Score tmp = (Score)m_score.get(i);
+            yValues.add(new Entry(i, (float)tmp.getScore()));
+        }
 
         // Update these points based on storage
-        yValues.add(new Entry(0, 60f));
+        /*yValues.add(new Entry(0, 60f));
         yValues.add(new Entry(1, 50f));
         yValues.add(new Entry(2, 70f));
         yValues.add(new Entry(3, 30f));
         yValues.add(new Entry(4, 50f));
         yValues.add(new Entry(5, 60f));
-        yValues.add(new Entry(6, 65f));
+        yValues.add(new Entry(6, 65f));*/
 
         LineDataSet set1 = new LineDataSet(yValues, "Points Gained");
 
