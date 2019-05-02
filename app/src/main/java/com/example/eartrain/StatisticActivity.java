@@ -8,9 +8,13 @@ import android.widget.Toast;
 
 import com.example.eartrain.models.Score;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
@@ -20,12 +24,14 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class StatisticActivity extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener
 {
     private static final String TAG = "StatisticActivity";
     private LineChart m_chart;
     private List<Achievement> allAchievements;
     private List<Score> m_score;
+    final String[] xValues = new String[]{"mon", "tue", "wed", "thu", "fri", "sat,", "sun"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +58,11 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
             yValues.add(new Entry(i, (float)tmp.getScore()));
         }
 
-        // Update these points based on storage
-        /*yValues.add(new Entry(0, 60f));
-        yValues.add(new Entry(1, 50f));
-        yValues.add(new Entry(2, 70f));
-        yValues.add(new Entry(3, 30f));
-        yValues.add(new Entry(4, 50f));
-        yValues.add(new Entry(5, 60f));
-        yValues.add(new Entry(6, 65f));*/
-
         LineDataSet set1 = new LineDataSet(yValues, "Points Gained");
 
         set1.setFillAlpha(110);
         set1.setLineWidth(2f);
-        set1.setValueTextSize(7f);
+        set1.setValueTextSize(9f);
 
         // Disables the right axis
         m_chart.getAxisRight().setEnabled(false);
@@ -95,7 +92,7 @@ public class StatisticActivity extends AppCompatActivity implements OnChartGestu
     @Override
     public void onChartLongPressed(MotionEvent me)
     {
-
+        Toast.makeText(getApplicationContext(), "Graph of how many points was gained each day", Toast.LENGTH_LONG).show();
     }
 
     @Override
