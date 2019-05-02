@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     StorageHandler storageHandler;
-    Button chordButton, intervalButton, statButton, replicationButton, theoryButton;
+    Button chordButton, intervalButton, statButton, replicationButton, theoryButton, compButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
         theoryButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), TheoryActivity.class));
+            }
+        });
+
+        compButton = findViewById(R.id.btn_comp);
+        compButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), CompActivity.class));
             }
         });
     }

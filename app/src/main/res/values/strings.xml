@@ -115,4 +115,7 @@
     <string name="btn_comp_text">Competitive</string>
     <string name="title_activity_comp">CompActivity</string>
     <string name="comp_act_Title">Choose Mode</string>
+    <string name="achv_mountain">Climber</string>
+    <string name="achievment_4_rocket">Launch</string>
+    <string name="achievment_5_bag">Spender</string>
 </resources>

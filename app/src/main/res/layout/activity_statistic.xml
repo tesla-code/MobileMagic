@@ -58,6 +58,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart"
         android:layout_width="300dp"
@@ -133,12 +134,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/achivement_circle"
         android:foreground="@drawable/big"
         android:text="Button"
         app:layout_constraintStart_toEndOf="@+id/button5"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/achv_mountain"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/achievment_4_rocket"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/achievment_5_bag"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 
 </android.support.constraint.ConstraintLayout>
